@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon --watch './' --ignore 'src/**/*.spec.ts' --exec 'ts-node' ./src/server.ts",
+    "dev": "nodemon --watch './' --ignore 'src/**/*.spec.ts' --exec 'ts-node' ./src/server.ts",
+    "start": "'ts-node' ./src/server.ts",
     "build": "tsc --p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.{ts,js,tsx,jsx,css}\""
   },
