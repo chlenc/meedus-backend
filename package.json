@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon --watch './' --ignore 'src/**/*.spec.ts' --exec 'ts-node' ./src/server.ts",
-    "start": "ts-node ./src/server.ts",
+    "start": "node ./src/server.js",
     "build": "tsc --p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.{ts,js,tsx,jsx,css}\""
   },
