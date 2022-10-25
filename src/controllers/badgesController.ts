@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
-import { checkAvailableBadges } from "../services/badgesService";
-import achievements from "../achievements";
+import { checkAvailableBadges, getBadgesList } from "../services/badgesService";
 
 export const getAllBadges: RequestHandler<null> = async (req, res, next) => {
+  const achievements = await getBadgesList();
   res.send(achievements);
 };
 export const check: RequestHandler = async (req, res, next) => {

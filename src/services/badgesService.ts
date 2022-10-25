@@ -1,4 +1,5 @@
-import achievements, {
+import {
+  TBadge,
   TFirstTransactionsBadge,
   TInvokeBadge,
   TTransactionsBadge,
@@ -19,6 +20,16 @@ type TCheckResult = {
     actualActionValue: number;
     requiredActionValue: number;
   };
+};
+
+export const getBadgesList = async (): Promise<Array<TBadge>> => {
+  const validatorAddress = libs.crypto.address(validatorSeed, chainId);
+  const res = await nodeService.nodeMatchRequest(
+    validatorAddress,
+    "badge_(.*)",
+    chainId as "W" | "T"
+  );
+  return res.map(({ value }) => JSON.parse(value as string));
 };
 
 export const checkInvokeBadgeStatus = async (
@@ -92,6 +103,7 @@ export const checkFirstTransactionBadgeStatus = async (
   };
 };
 export const checkAvailableBadges = async (sender: string) => {
+  const achievements = await getBadgesList();
   const state = await Promise.all(
     achievements.map(async (badge) => {
       switch (badge.type) {
