@@ -26,7 +26,7 @@ export const getBadgesList = async (): Promise<Array<TBadge>> => {
   const validatorAddress = libs.crypto.address(validatorSeed, chainId);
   const res = await nodeService.nodeMatchRequest(
     validatorAddress,
-    "badge_(.*)",
+    "%5Ebadge_%5B0-9%5D%2B%24", //"^badge_[0-9]+$"
     chainId as "W" | "T"
   );
   return res.map(({ value }) => JSON.parse(value as string));
